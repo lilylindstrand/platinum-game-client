@@ -1,1 +1,3 @@
-rootProject.name = 'platinum_game_client'
+rootProject.name = 'platinum-game-client'
+include ':platinum-api'
+project(':platinum-api').projectDir = file('C:\\Users\\Lily\\Desktop\\Games\\platinum-api')
