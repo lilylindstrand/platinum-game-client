@@ -2,6 +2,7 @@ package dev.hepno.platinum_game_client;
 
 import dev.hepno.platinum_api.packet.Packet;
 import dev.hepno.platinum_api.packet.PacketType;
+import dev.hepno.platinum_api.packet.PlayerFreeCoinPacket;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -13,10 +14,12 @@ import io.netty.channel.socket.DatagramPacket;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.util.CharsetUtil;
 import io.netty.util.internal.SocketUtils;
+import lombok.Getter;
 
 import java.io.ByteArrayOutputStream;
 import java.net.InetSocketAddress;
 
+@Getter
 public class UdpClient {
 
     static final int PORT = 7777;
@@ -24,7 +27,7 @@ public class UdpClient {
     private Bootstrap bootstrap;
     private Channel channel;
 
-    public void run() throws Exception {
+    public void run() {
 
         eventLoopGroup = new NioEventLoopGroup();
         try {
@@ -34,8 +37,10 @@ public class UdpClient {
                     .option(ChannelOption.SO_BROADCAST, true)
                     .handler(new UdpClientHandler());
             channel = bootstrap.bind(0).sync().channel();
-        } finally {
-            eventLoopGroup.shutdownGracefully();
+
+            write(new PlayerFreeCoinPacket(11, 2, 78));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -50,8 +55,11 @@ public class UdpClient {
                 byteBuf,
                 new InetSocketAddress("127.0.0.1", PORT)
         );
-
         channel.writeAndFlush(datagramPacket).sync();
+    }
+
+    public void shutdown() {
+        eventLoopGroup.shutdownGracefully();
     }
 
 }
