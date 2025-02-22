@@ -13,7 +13,7 @@ import io.netty.util.internal.SocketUtils;
 
 public class UdpClient {
 
-    static final int PORT = 7777;
+    static final int PORT = 7777; 
     private EventLoopGroup eventLoopGroup;
     private Bootstrap bootstrap;
     private Channel channel;
