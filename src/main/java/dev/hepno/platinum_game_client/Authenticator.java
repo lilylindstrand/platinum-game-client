@@ -4,6 +4,8 @@ package dev.hepno.platinum_game_client;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.awt.*;
 import java.io.IOException;
@@ -15,6 +17,11 @@ public class Authenticator {
 
     private String sessionId = null;
     private CountDownLatch latch = new CountDownLatch(1);
+    private PlatinumGameClientApplication main;
+
+    public Authenticator(PlatinumGameClientApplication main) {
+        this.main = main;
+    }
 
     public void openLoginSite() throws IOException, InterruptedException {
         String loginUrl = "http://localhost:8080/login";
@@ -30,8 +37,6 @@ public class Authenticator {
             public void handle(HttpExchange exchange) throws IOException {
                 String path = exchange.getRequestURI().getPath();
                 sessionId = path.substring(1);
-                System.out.println("ID: " + sessionId);
-
                 latch.countDown();
             }
         });
@@ -43,7 +48,7 @@ public class Authenticator {
         startListener();
         openLoginSite();
         latch.await();
-        System.out.println("Latch ended: " + sessionId);
+        main.setSession(new Session(sessionId));
     }
 
 }
