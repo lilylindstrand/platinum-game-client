@@ -1,4 +1,4 @@
-package dev.hepno.platinum_game_client;
+package dev.hepno.platinum_game_client.client;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

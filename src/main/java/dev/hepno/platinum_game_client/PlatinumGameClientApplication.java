@@ -1,5 +1,8 @@
 package dev.hepno.platinum_game_client;
 
+import dev.hepno.platinum_game_client.client.UdpClient;
+import dev.hepno.platinum_game_client.session.Authenticator;
+import dev.hepno.platinum_game_client.session.Session;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.CommandLineRunner;

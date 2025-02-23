@@ -1,11 +1,10 @@
-package dev.hepno.platinum_game_client;
+package dev.hepno.platinum_game_client.session;
 
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import dev.hepno.platinum_game_client.PlatinumGameClientApplication;
 
 import java.awt.*;
 import java.io.IOException;

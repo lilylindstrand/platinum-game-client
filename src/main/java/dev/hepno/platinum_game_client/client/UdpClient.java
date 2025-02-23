@@ -1,4 +1,4 @@
-package dev.hepno.platinum_game_client;
+package dev.hepno.platinum_game_client.client;
 
 import dev.hepno.platinum_api.packet.Packet;
 import dev.hepno.platinum_api.packet.PacketType;
@@ -12,11 +12,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.DatagramPacket;
 import io.netty.channel.socket.nio.NioDatagramChannel;
-import io.netty.util.CharsetUtil;
-import io.netty.util.internal.SocketUtils;
 import lombok.Getter;
 
-import java.io.ByteArrayOutputStream;
 import java.net.InetSocketAddress;
 
 @Getter
