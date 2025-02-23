@@ -4,6 +4,7 @@ package dev.hepno.platinum_game_client.session;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import dev.hepno.platinum_api.packet.PlayerConnectPacket;
 import dev.hepno.platinum_game_client.PlatinumGameClientApplication;
 
 import java.awt.*;
@@ -48,6 +49,7 @@ public class Authenticator {
         openLoginSite();
         latch.await();
         main.setSession(new Session(sessionId));
+        main.getClient().write(new PlayerConnectPacket(sessionId));
     }
 
 }

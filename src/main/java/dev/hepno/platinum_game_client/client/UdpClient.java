@@ -35,7 +35,6 @@ public class UdpClient {
                     .handler(new UdpClientHandler());
             channel = bootstrap.bind(0).sync().channel();
 
-            write(new PlayerFreeCoinPacket(11, 2, 78));
         } catch (Exception e) {
             e.printStackTrace();
         }
