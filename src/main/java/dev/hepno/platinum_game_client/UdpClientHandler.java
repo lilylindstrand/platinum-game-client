@@ -9,8 +9,8 @@ public class UdpClientHandler extends SimpleChannelInboundHandler<DatagramPacket
     @Override
     public void channelRead0(ChannelHandlerContext context, DatagramPacket datagramPacket) throws Exception {
         String response = datagramPacket.content().toString(CharsetUtil.UTF_8);
-        if (response.startsWith("QOTM: ")) {
-            System.out.println("Quote of the Moment: " + response.substring(6));
+        if (response.startsWith("token: ")) {
+            System.out.println("token: " + response.substring(6));
             context.close();
         }
     }

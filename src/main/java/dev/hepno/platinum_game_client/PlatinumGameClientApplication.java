@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PlatinumGameClientApplication implements CommandLineRunner {
 
 	private UdpClient client;
+	private Authenticator authenticator;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PlatinumGameClientApplication.class, args);
@@ -19,6 +20,8 @@ public class PlatinumGameClientApplication implements CommandLineRunner {
 	public void run(String[] args) throws Exception {
 		client = new UdpClient();
 		client.run();
+		authenticator = new Authenticator();
+		authenticator.loginProcess();
 	}
 
 }
